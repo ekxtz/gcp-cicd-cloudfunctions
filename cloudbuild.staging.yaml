@@ -27,8 +27,9 @@ steps:
 substitutions:
     _FUNCTION_PROJECT : astahov-staging
     _FUNCTION_NAME    : my-nodejs-app
-    _FUNCTION_REGION  : europe-central2
-    _FUNCTION_RUNTIME : nodejs22
-    _ENTRY_POINT      : helloHttp
+    _FUNCTION_REGION  : northamerica-northeast1
+    _FUNCTION_RUNTIME : nodejs14
+    _ENTRY_POINT      : helloWorld
+
 
 
