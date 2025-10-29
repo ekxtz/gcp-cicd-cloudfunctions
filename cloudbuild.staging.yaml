@@ -1,6 +1,10 @@
+options:
+  # FIX: This line addresses the "if 'build.service_account' is specified..." error
+  # by enabling the use of a regional logs bucket, satisfying the security requirement.
+  default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
+
 # This CloudBuild will be triggered by push to staging branch
 #
-
 steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args: ['echo', 'Building...']
@@ -8,27 +12,26 @@ steps:
   
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args: ['echo', 'Testing...']
-  id: TEST  
+  id: TEST
   
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args:
-  - gcloud
-  - functions
-  - deploy
-  - $_FUNCTION_NAME
-  - --region=$_FUNCTION_REGION
-  - --source=.
-  - --trigger-http
-  - --runtime=$_FUNCTION_RUNTIME
-  - --project=$_FUNCTION_PROJECT
-  - --entry-point=$_ENTRY_POINT
+    - gcloud
+    - functions
+    - deploy
+    - $_FUNCTION_NAME
+    - --region=$_FUNCTION_REGION
+    - --source=.
+    - --trigger-http
+    - --runtime=$_FUNCTION_RUNTIME
+    - --project=$_FUNCTION_PROJECT
+    - --entry-point=$_ENTRY_POINT
   id: DEPLOY
 
 substitutions:
-    _FUNCTION_PROJECT : astahov-staging
-    _FUNCTION_NAME    : my-nodejs-app
-    _FUNCTION_REGION  : europe-central2
-    _FUNCTION_RUNTIME : nodejs22
-    _ENTRY_POINT      : helloHttp
-
+  _FUNCTION_PROJECT : astahov-staging
+  _FUNCTION_NAME    : my-nodejs-app
+  _FUNCTION_REGION  : europe-central2
+  _FUNCTION_RUNTIME : nodejs22
+  _ENTRY_POINT      : helloHttp
 
