@@ -27,9 +27,10 @@ steps:
 substitutions:
     _FUNCTION_PROJECT : astahov-prod
     _FUNCTION_NAME    : my-nodejs-app
-    _FUNCTION_REGION  : europe-central2
+    _FUNCTION_REGION  : REGIONAL_USER_OWNED_BUCKET
     _FUNCTION_RUNTIME : nodejs14
     _ENTRY_POINT      : helloHttp
+
 
 
 
